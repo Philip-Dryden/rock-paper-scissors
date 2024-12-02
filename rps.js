@@ -1,32 +1,71 @@
-function getComputerChoice() {
-    let choice = null;
-    let randomNumber = Math.floor(Math.random()*100)+1;
-    //console.log(randomNumber);
-    if (randomNumber < 34) {
-        choice = "Rock";
+
+
+function getPlayerChoice() {
+    let playerChoice = prompt("Rock, Paper, or Scissors?");
+    console.log(playerChoice);
+    playerChoice = playerChoice.toUpperCase();
+    console.log(playerChoice);
+    return playerChoice;
     }
-    else if (randomNumber >= 34 && randomNumber < 66) {
-        choice = "Paper";
+
+function getComputerChoice() {
+    const options = ["ROCK", "PAPER", "SCISSORS"];
+    const randomNumber = Math.floor(Math.random() * options.length);
+    return options[randomNumber];
+}
+
+function playRound(playerChoice, computerChoice) {
+    if (playerChoice == computerChoice) {
+        console.log("Unentschieden!");
+        console.log(playerChoice, computerChoice);
+        return "Gleichstand";
+    }
+
+    else if( 
+        (playerChoice == "ROCK"     && computerChoice == "SCISSORS")    ||
+        (playerChoice == "PAPER"    && computerChoice == "ROCK")        ||
+        (playerChoice == "SCISSORS" && computerChoice == "PAPER")       
+    ) {
+        console.log("Spieler gewinnt! "+playerChoice+" schlaegt "+computerChoice+" !");
+        return "Player";
     }
     else {
-        choice = "Scissors";
+        console.log("Computer gewinnt! "+computerChoice+" schlaegt "+playerChoice+" !");
+        return "Computer";
     }
-    //console.log(choice);
-    return choice;
+
+    
 }
-function getPlayerChoice() {
-    let playerInput = parseInt(prompt("1 for Rock, 2 for Paper, 3 for Scissors!"));
-    switch(playerInput) {
-        case 1:
-            console.log("Rock");
-            break;
-        case 2:
-            console.log("Paper");
-            break;
-        case 3:
-            console.log("Scissors");
-            break;
-        default:
-            console.log("Not a number between 1 and 3!");
+
+function playGame() {
+    let computerScore = 0;
+    let playerScore   = 0;
+
+    for(i = 1; i <= 5; ++i) {
+        const playerSelection   = getPlayerChoice();
+        const computerSelection = getComputerChoice();
+        console.log("playerSelection = "+playerSelection);
+        console.log("computerSelection = "+computerSelection);
+        let winner = playRound(playerSelection, computerSelection);
+
+        if (winner === "Player") {
+            ++playerScore;
+        }
+        else if (winner === "Computer") {
+        ++computerScore;
+        }
+    }
+
+    console.log("Hier sind die Punkte!");
+    console.log("Spieler: "+playerScore+" Punkte!");
+    console.log("Computer: "+computerScore+" Punkte!");
+    console.log("Der Gewinner ist: ");
+    if(playerScore > computerScore) {
+        console.log("Spieler!");
+    }
+    else {
+        console.log("Computer!");
     }
 }
+
+playGame();
