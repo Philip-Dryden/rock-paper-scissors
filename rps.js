@@ -2,9 +2,7 @@
 
 function getPlayerChoice() {
     let playerChoice = prompt("Rock, Paper, or Scissors?");
-    console.log(playerChoice);
     playerChoice = playerChoice.toUpperCase();
-    console.log(playerChoice);
     return playerChoice;
     }
 
@@ -17,7 +15,6 @@ function getComputerChoice() {
 function playRound(playerChoice, computerChoice) {
     if (playerChoice == computerChoice) {
         console.log("Draw!");
-        console.log(playerChoice, computerChoice);
         return "Draw";
     }
 
@@ -44,8 +41,6 @@ function playGame() {
     for(i = 1; i <= 5; ++i) {
         const playerChoice   = getPlayerChoice();
         const computerChoice = getComputerChoice();
-        console.log("playerChoice = "+playerChoice);
-        console.log("computerChoice = "+computerChoice);
         let winner = playRound(playerChoice, computerChoice);
 
         if (winner === "Player") {
