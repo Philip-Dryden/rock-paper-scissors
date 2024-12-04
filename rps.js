@@ -1,23 +1,18 @@
-
-
 function getPlayerChoice() {
     let playerChoice = prompt("Rock, Paper, or Scissors?");
     playerChoice = playerChoice.toUpperCase();
     return playerChoice;
     }
-
 function getComputerChoice() {
     const options = ["ROCK", "PAPER", "SCISSORS"];
     const randomNumber = Math.floor(Math.random() * options.length);
     return options[randomNumber];
 }
-
 function playRound(playerChoice, computerChoice) {
     if (playerChoice == computerChoice) {
         console.log("Draw!");
         return "Draw";
     }
-
     else if( 
         (playerChoice == "ROCK"     && computerChoice == "SCISSORS")    ||
         (playerChoice == "PAPER"    && computerChoice == "ROCK")        ||
@@ -29,20 +24,15 @@ function playRound(playerChoice, computerChoice) {
     else {
         console.log("Computer wins! "+computerChoice+" beats "+playerChoice+" !");
         return "Computer";
-    }
-
-    
+    }    
 }
-
 function playGame() {
     let computerScore = 0;
     let playerScore   = 0;
-
     for(i = 1; i <= 5; ++i) {
         const playerChoice   = getPlayerChoice();
         const computerChoice = getComputerChoice();
         let winner = playRound(playerChoice, computerChoice);
-
         if (winner === "Player") {
             ++playerScore;
         }
@@ -50,7 +40,6 @@ function playGame() {
         ++computerScore;
         }
     }
-
     console.log("Player scored "+playerScore+" points!");
     console.log("Computer: scored "+computerScore+" points!");
     if(playerScore == computerScore) {
@@ -61,8 +50,6 @@ function playGame() {
     }
     else {
         console.log("Computer wins!");
-    }
-    
+    }   
 }
-
 playGame();
