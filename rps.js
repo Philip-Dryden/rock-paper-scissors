@@ -16,9 +16,9 @@ function getComputerChoice() {
 
 function playRound(playerChoice, computerChoice) {
     if (playerChoice == computerChoice) {
-        console.log("Unentschieden!");
+        console.log("Draw!");
         console.log(playerChoice, computerChoice);
-        return "Gleichstand";
+        return "Draw";
     }
 
     else if( 
@@ -26,11 +26,11 @@ function playRound(playerChoice, computerChoice) {
         (playerChoice == "PAPER"    && computerChoice == "ROCK")        ||
         (playerChoice == "SCISSORS" && computerChoice == "PAPER")       
     ) {
-        console.log("Spieler gewinnt! "+playerChoice+" schlaegt "+computerChoice+" !");
+        console.log("Player wins! "+playerChoice+" beats "+computerChoice+" !");
         return "Player";
     }
     else {
-        console.log("Computer gewinnt! "+computerChoice+" schlaegt "+playerChoice+" !");
+        console.log("Computer wins! "+computerChoice+" beats "+playerChoice+" !");
         return "Computer";
     }
 
@@ -42,11 +42,11 @@ function playGame() {
     let playerScore   = 0;
 
     for(i = 1; i <= 5; ++i) {
-        const playerSelection   = getPlayerChoice();
-        const computerSelection = getComputerChoice();
-        console.log("playerSelection = "+playerSelection);
-        console.log("computerSelection = "+computerSelection);
-        let winner = playRound(playerSelection, computerSelection);
+        const playerChoice   = getPlayerChoice();
+        const computerChoice = getComputerChoice();
+        console.log("playerChoice = "+playerChoice);
+        console.log("computerChoice = "+computerChoice);
+        let winner = playRound(playerChoice, computerChoice);
 
         if (winner === "Player") {
             ++playerScore;
@@ -56,16 +56,18 @@ function playGame() {
         }
     }
 
-    console.log("Hier sind die Punkte!");
-    console.log("Spieler: "+playerScore+" Punkte!");
-    console.log("Computer: "+computerScore+" Punkte!");
-    console.log("Der Gewinner ist: ");
-    if(playerScore > computerScore) {
-        console.log("Spieler!");
+    console.log("Player scored "+playerScore+" points!");
+    console.log("Computer: scored "+computerScore+" points!");
+    if(playerScore == computerScore) {
+        console.log("Draw!");
+    }
+    else if(playerScore > computerScore) {
+        console.log("Player wins!");
     }
     else {
-        console.log("Computer!");
+        console.log("Computer wins!");
     }
+    
 }
 
 playGame();
